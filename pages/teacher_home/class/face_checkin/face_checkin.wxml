@@ -1,0 +1,12 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">人脸签到</view>
+</cu-custom>
+<view style="display: flex;flex-direction: row;">
+    <camera binderror="error" devicePosition="back" flash="off" style="width: 400rpx; height:300rpx;"></camera>
+    <scroll-view scrollIntoView="{{intoView}}" scrollY="true" style="height:300rpx;width:300rpx;">
+        <text style="word-break: break-word;">{{result}}</text>
+        <view id="bottom" style="height:30rpx"></view>
+    </scroll-view>
+    <button bindtap="start" style="background-color:{{backgroud}}">{{text}}</button>
+</view>

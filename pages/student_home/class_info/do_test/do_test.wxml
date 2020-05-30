@@ -1,0 +1,30 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">{{testname}}</view>
+</cu-custom>
+<radio-group bindchange="radioChange" class="block" data-arrayindex="{{indext}}" data-id="{{item.testitemId}}" wx:for="{{testitemList}}" wx:for-index="indext">
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class="action">
+            <text class="cuIcon-title text-orange "></text> 题目{{indext+1}}: {{item.content}}
+    </view>
+    </view>
+    <view class="cu-form-group">
+        <text class="text-grey">A:{{item.optiona}}</text>
+        <radio checked="{{item.checked}}" value="A"></radio>
+    </view>
+    <view class="cu-form-group">
+        <text class="text-grey">B:{{item.optionb}}</text>
+        <radio checked="{{item.checked}}" value="B"></radio>
+    </view>
+    <view class="cu-form-group">
+        <text class="text-grey">C:{{item.optionc}}</text>
+        <radio checked="{{item.checked}}" value="C"></radio>
+    </view>
+    <view class="cu-form-group">
+        <text class="text-grey">D:{{item.optiond}}</text>
+        <radio checked="{{item.checked}}" value="D"></radio>
+    </view>
+</radio-group>
+<view class="padding flex flex-direction">
+    <button bindtap="submitanwser" class="cu-btn bg-red margin-tb-sm lg">提交</button>
+</view>

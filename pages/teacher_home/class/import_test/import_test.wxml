@@ -1,0 +1,9 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">导入题库</view>
+</cu-custom>
+<form bindsubmit="formSubmit">
+    <button bindtap="chooseFile">选择文件</button>
+    <button formType="submit">上传</button>
+</form>
+<text wx:if="{{hasResult}}">{{result}}</text>

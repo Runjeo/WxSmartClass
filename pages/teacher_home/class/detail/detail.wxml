@@ -1,0 +1,51 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">签到信息</view>
+</cu-custom>
+<view class="cu-bar bg-white solid-bottom">
+	<view class="action">
+		<text class="cuIcon-title text-orange "></text> 签到列表
+	</view>
+	<view class="action">
+		<button bindtap="refresh" class="cu-btn bg-green shadow">刷新</button>
+	</view>
+</view>
+<scroll-view scrollWithAnimation scrollY class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 200rpx)">
+	<view class="cu-list menu-avatar">
+		<view bindtap="showmodel" class="cu-item" data-jobid="{{item.jobId}}" data-state="{{item.isCheckedIn}}" wx:for="{{hlist}}">
+			<view class="cu-avatar round lg bg-cyan">
+				<text class="avatar-text">{{item.name}}</text>
+			</view>
+			<view class="content">
+				<view class="text-grey">{{item.name}}</view>
+				<view class="text-gray text-sm">
+					学号:{{item.jobId}}</view>
+			</view>
+			<view class="action">
+				<view class="text-grey text-xs">签到状态</view>
+				<view class="cu-tag round bg-green}} sm" wx:if="{{item.isCheckedIn=='已签'}}">{{item.isCheckedIn}}</view>
+				<view class="cu-tag round bg-red}} sm" wx:elif="{{item.isCheckedIn=='未签'}}">{{item.isCheckedIn}}</view>
+				<view class="cu-tag round bg-yellow}} sm" wx:elif="{{item.isCheckedIn=='迟到'}}">{{item.isCheckedIn}}</view>
+				<view class="cu-tag round bg-blue}} sm" wx:else>{{item.isCheckedIn}}</view>
+			</view>
+		</view>
+	</view>
+</scroll-view>
+<view bindtap="hideModal" class="cu-modal bottom-modal show" wx:if="{{isshow}}">
+	<view catchtap class="cu-dialog">
+		<view class="cu-bar bg-white">
+			<view bindtap="hideModal" class="action text-blue">取消</view>
+			<view bindtap="updatestate" class="action text-green">确定</view>
+		</view>
+		<view class="grid col-4 padding-sm">
+			<view class="padding-xs" wx:for="{{checkbox}}" wx:key="{{index}}">
+				<button bindtap="ChooseCheckbox" class="cu-btn orange lg block bg-{{item.color}}" data-value="{{item.value}}" wx:if="{{item.checked}}"> {{item.name}}
+
+				</button>
+				<button bindtap="ChooseCheckbox" class="cu-btn {{item.color}} lg block line-{{item.color}}" data-value="{{item.value}}" wx:elif="{{!item.checked}}"> {{item.name}}
+
+				</button>
+			</view>
+		</view>
+	</view>
+</view>

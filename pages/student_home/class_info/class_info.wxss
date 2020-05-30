@@ -1,0 +1,95 @@
+.operationlist {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 0%;
+    justify-content: center;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #dbd2d2;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: #dbd2d2;
+}
+
+.operationitem {
+    font-size: 18px;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 0 5% 0;
+}
+
+.imgitem {
+    height: 80rpx;
+    width: 80rpx;
+    margin-left: 33%;
+}
+
+.containerinfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 20rpx;
+}
+
+.userinfo {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.name1 {
+    font-size: 20px;
+    color: black;
+}
+
+.name2 {
+    font-size: 15px;
+    color: grey;
+}
+
+.name3 {
+    font-size: 15px;
+    color: grey;
+    margin-left: 25%;
+}
+
+.history_line {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.history_list {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #dbd2d2;
+}
+
+.his_container {
+    padding-left: 12%;
+}
+
+.name4 {
+    font-size: 15px;
+    color: grey;
+}
+
+.tab {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 40%;
+    font-size: 25;
+}

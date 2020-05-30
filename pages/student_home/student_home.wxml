@@ -1,0 +1,86 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">
+        <text wx:if="{{showviewclass==true}}">我的课程</text>
+        <text wx:if="{{showviewclass==false}}">我的信息</text>
+    </view>
+</cu-custom>
+<class wx:if="{{showviewclass==true}}">
+    <view style="position:fixed; top:130rpx;width: 100%;">
+        <view class="cu-bar bg-white solid-bottom margin-top">
+            <view class="action">
+                <text class="cuIcon-title text-orange "></text>我的课程
+      </view>
+        </view>
+        <view wx:if="{{isclassNull==false}}">
+            <view class="VerticalBox">
+                <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 360rpx)">
+                    <view class="padding-top padding-lr" id="main-{{index}}" wx:for="{{classList}}">
+                        <view class="cu-bar solid-bottom bg-white">
+                            <view class="action">
+                                <text class="cuIcon-title text-green"></text>{{item.name}} </view>
+                        </view>
+                        <view class="cu-list menu-avatar">
+                            <view bindtap="goToClass" class="cu-item" data-id="{{item.id}}" data-name="{{item.name}}">
+                                <view class="cu-avatar round lg bg-cyan">
+                                    <text>{{item.iconn}}</text>
+                                </view>
+                                <view class="content">
+                                    <view class="text-gray text-sm flex">
+                                        <text class="text-cut">
+                                            <text class="margin-right-xs">{{item.name}} </text>
+                                        </text>
+                                    </view>
+                                    <view class="text-gray text-sm flex">
+                                        <text class="text-cut">
+                                            <text class="margin-right-xs">课程号：{{item.id}}</text>
+                                        </text>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+</class>
+<inf wx:if="{{showviewclass==false}}">
+    <view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+        <view bindtap="{{item.tap}}" class="cu-item" wx:if="{{index<gridCol*2}}" wx:for="{{iconList}}">
+            <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+                <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+                    <block wx:if="{{item.badge!=1}}">{{item.badge>99?'99+':item.badge}}</block>
+                </view>
+            </view>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+</inf>
+<view class="cu-bar tabbar  bg-white  foot">
+    <view bindtap="changeview" class="action text-{{showviewclass?'green':'gray'}}" data-value="class">
+        <view class="cuIcon-homefill"></view> 课程
+  </view>
+    <view class="action text-gray add-action">
+        <button bindtap="showaddclass" class="cu-btn cuIcon-add bg-green shadow"></button>
+    添加课程
+  </view>
+    <view bindtap="changeview" class="action text-{{showviewclass?'gray':'green'}}" data-value="inf">
+        <view class="cuIcon-my">
+            <view class="cu-tag badge"></view>
+        </view>
+    我的
+  </view>
+</view>
+<modal bindcancel="cancel" bindconfirm="formSubmit" cancelText="取消" confirmText="确定" hidden="{{hidden2}}" title="加入课程">
+    <form>
+        <view class="cu-form-group margin-top">
+            <view class="title">课程号码</view>
+            <input bindinput="formInputclassIda" placeholder="请输入课程号码" value="{{classIda}}"></input>
+        </view>
+        <view class="cu-form-group">
+            <view class="title">开放密码</view>
+            <input bindinput="formInputpwd" placeholder="请输入开放密码" value="{{openpwd}}"></input>
+        </view>
+    </form>
+</modal>

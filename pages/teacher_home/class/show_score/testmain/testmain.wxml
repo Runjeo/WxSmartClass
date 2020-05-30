@@ -1,0 +1,180 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">首页</view>
+</cu-custom>
+<scroll-view scrollX class="bg-white nav">
+    <view class="flex text-center">
+        <view bindtap="tabSelect" class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" data-id="{{index}}" wx:for="{{tag}}">
+			{{item}}
+		</view>
+    </view>
+</scroll-view>
+<view style="position:fixed; top:230rpx;width: 100%;">
+    <swiper class="swiper" current="{{TabCur}}" duration="300" style="height:600px;">
+        <swiper-item catchtouchmove="catchTouchMove">
+            <view>
+                <view wx:if="{{isNull==false}}">
+                    <view>
+                        <view class="VerticalBox">
+                            <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 250rpx)">
+                                <view class="cu-list menu sm-border" wx:for="{{testitemList}}" wx:for-index="indext">
+                                    <view bindtap="showdetail" class="cu-item arrow" data-a="{{item.a}}" data-all="{{item.all}}" data-answer="{{item.answer}}" data-b="{{item.b}}" data-c="{{item.c}}" data-d="{{item.d}}" data-na="{{item.na}}" data-nb="{{item.nb}}" data-nc="{{item.nc}}" data-nd="{{item.nd}}" data-num="{{item.num}}" data-value="{{item.value}}">
+                                        <view class="action">
+                                            <text class="cuIcon-title text-green"></text>题目{{indext+1}}：{{item.content}} </view>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{isNull==true}}">
+                    <view class="solids-bottom padding-xs flex align-center">
+                        <view class="flex-sub text-center">
+                            <view class="solid-bottom text-sl padding">
+                                <text class=" cuIcon-roundcheckfill text-green">该测验没有错题</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <swiper-item catchtouchmove="catchTouchMove">
+            <view class="cu-bar bg-white search fixed">
+                <view class="search-form round">
+                    <text class="cuIcon-search"></text>
+                    <input bindinput="nameInput" confirmType="search" placeholder="请输入学生姓名或学号" type="text"></input>
+                </view>
+                <view class="action">
+                    <button bindtap="search" class="cu-btn bg-gradual-green shadow-blur round">查询</button>
+                </view>
+            </view>
+            <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+                <view class="cu-dialog">
+                    <view class="cu-bar bg-white justify-end">
+                        <view class="content">{{modaltext}}</view>
+                        <view bindtap="hideModal" class="action">
+                            <text class="cuIcon-close text-red"></text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view style="margin-top:100rpx" wx:if="{{hasResult}}">
+                <view class="cu-bar bg-white solid-bottom margin-top">
+                    <view class="action">
+                        <text class="cuIcon-titles text-orange "></text> {{result}}
+					</view>
+                </view>
+                <view>
+                    <view class="VerticalBox">
+                        <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 450rpx)">
+                            <view wx:for="{{stestitemList}}" wx:for-index="indext">
+                                <view class="cu-bar bg-white solid-bottom margin-top">
+                                    <view class="action">
+                                        <text class="cuIcon-title text-orange "></text> 题目{{indext+1}}: {{item.content}}
+									</view>
+                                </view>
+                                <view class="cu-form-group">
+                                    <text class="text-grey">正确答案:{{item.real}}  学生选择:{{item.choice}} </text>
+                                </view>
+                                <view class="cu-form-group">
+                                    <text class="text-grey">A:{{item.a}}</text>
+                                </view>
+                                <view class="cu-form-group">
+                                    <text class="text-grey">B:{{item.b}}</text>
+                                </view>
+                                <view class="cu-form-group">
+                                    <text class="text-grey">C:{{item.c}}</text>
+                                </view>
+                                <view class="cu-form-group">
+                                    <text class="text-grey">D:{{item.d}}</text>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <swiper-item catchtouchmove="catchTouchMove">
+            <view>
+                <view>
+                    <view>
+                        <view class="VerticalBox">
+                            <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 250rpx)">
+                                <view class="cu-list menu-avatar">
+                                    <view class="cu-item" wx:for="{{studentList}}">
+                                        <view class="cu-avatar round lg bg-cyan">
+                                            <text class="avatar-text">{{item.name}}</text>
+                                        </view>
+                                        <view bindtap="goquerry" class="content" data-id="{{item.id}}" data-name="{{item.name}}" data-openid="{{item.openid}}">
+                                            <view class="text-grey">{{item.name}}</view>
+                                            <view class="text-gray text-sm">
+												学号:{{item.jobId}}</view>
+                                        </view>
+                                        <view class="action">
+                                            <view class="text-grey text-xs">{{item.state}}</view>
+                                            <view class="cu-tag round {{item.state=='已完成'?'bg-green':'bg-red'}} sm">{{item.score}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </scroll-view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+</view>
+<view class="cu-modal {{modalName=='setWeightModal'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar justify-end bg-grey solid-bottom">
+            <view class="content ">详细情况</view>
+            <view bindtap="hideModal" class="action">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+            <view class="cu-item {{menuArrow?'arrow':''}}">
+                <view class="content">
+                    <text class="text-grey">答题人数：{{all}}</text>
+                    <text class="text-grey">错误率：{{num}}%</text>
+                    <text class="text-grey">答案：{{answer}}</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">A：{{a}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{na}} 人</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">B：{{b}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{nb}} 人</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">C：{{c}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{nc}} 人</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">D：{{d}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{nd}} 人</text>
+                </view>
+            </view>
+        </view>
+        <view bindtap="hideModal" class="cu-form-group bg-grey margin-top">
+            <text style="text-align:center;width:100%">确定</text>
+        </view>
+    </view>
+</view>

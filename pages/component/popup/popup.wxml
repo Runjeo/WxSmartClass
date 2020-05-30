@@ -1,0 +1,7 @@
+<view catchtouchmove="preventTouchMove" class="mask" wx:if="{{showModal}}"></view>
+<view class="modalDlg" wx:if="{{showModal}}">
+    <image src="/images/message.png"></image>
+    <text class="text">这里是文本描述，可以查看css修改样式</text>
+    <view bindtap="ok" class="ok">好的</view>
+</view>
+<view bindtap="btn" class="btn">弹窗</view>

@@ -1,0 +1,5 @@
+<form bindsubmit="formSubmit">
+    <input name="name" placeholder="请输入课程名" style="border: 1px solid black;height:80rpx;margin-top:80rpx;"></input>
+    <button formType="submit" style="margin-top:100rpx;width:50%">添加</button>
+</form>
+<text wx:if="{{hasResult}}">{{result}}</text>

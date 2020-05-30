@@ -1,0 +1,88 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">{{title}}</view>
+</cu-custom>
+<view>
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class="action">
+            <text class="cuIcon-title text-orange "></text>错题展示
+		</view>
+    </view>
+    <view wx:if="{{isNull==false}}">
+        <view>
+            <view class="VerticalBox">
+                <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 370rpx)">
+                    <view class="cu-list menu sm-border" wx:for="{{testitemList}}" wx:for-index="indext">
+                        <view bindtap="showdetail" class="cu-item arrow" data-a="{{item.a}}" data-all="{{item.all}}" data-answer="{{item.answer}}" data-b="{{item.b}}" data-c="{{item.c}}" data-d="{{item.d}}" data-na="{{item.na}}" data-nb="{{item.nb}}" data-nc="{{item.nc}}" data-nd="{{item.nd}}" data-num="{{item.num}}" data-value="{{item.value}}">
+                            <view class="action">
+                                <text class="cuIcon-title text-green"></text>题目{{indext+1}}：{{item.content}} </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{isNull==true}}">
+        <view class="solids-bottom padding-xs flex align-center">
+            <view class="flex-sub text-center">
+                <view class="solid-bottom text-sl padding">
+                    <text class=" cuIcon-roundcheckfill text-green">该测验没有错题</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="cu-modal {{modalName=='setWeightModal'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar justify-end bg-grey solid-bottom">
+            <view class="content ">详细情况</view>
+            <view bindtap="hideModal" class="action">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+            <view class="cu-item {{menuArrow?'arrow':''}}">
+                <view class="content">
+                    <text class="text-grey">答题人数：{{all}}</text>
+                    <text class="text-grey">错误率：{{num}}%</text>
+                    <text class="text-grey">答案：{{answer}}</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">A：{{a}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{na}} 人</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">B：{{b}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{nb}} 人</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">C：{{c}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{nc}} 人</text>
+                </view>
+            </view>
+            <view class="cu-item">
+                <view class="content">
+                    <text class="text-grey">D：{{d}}</text>
+                </view>
+                <view class="action">
+                    <text class="text-grey text-sm">{{nd}} 人</text>
+                </view>
+            </view>
+        </view>
+        <view bindtap="hideModal" class="cu-form-group bg-grey margin-top">
+            <text style="text-align:center;width:100%">确定</text>
+        </view>
+    </view>
+</view>

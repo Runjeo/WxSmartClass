@@ -1,0 +1,6 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content"></view>
+</cu-custom>
+<camera binderror="error" devicePosition="front" flash="off" style="width: 100%; height:calc(100vh - 460rpx);"></camera>
+<button bindtap="takePhoto" style="width: 100%;" type="primary">拍照</button>

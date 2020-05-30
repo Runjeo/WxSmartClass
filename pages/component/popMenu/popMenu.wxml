@@ -1,0 +1,6 @@
+<view>
+    <image animation="{{animCollect}}" bindtap="add_class" class="img-style" src="/images/plus.png"></image>
+    <image animation="{{animTranspond}}" bindtap="search_class" class="img-style" src="/images/search_line.png"></image>
+    <image animation="{{animInput}}" bindtap="go_top" class="img-style" src="/images/go_top.png"></image>
+    <image animation="{{animPlus}}" bindtap="plus" class="img-plus-style" src="/images/popmenu_line.png"></image>
+</view>

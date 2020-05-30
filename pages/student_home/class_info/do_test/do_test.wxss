@@ -1,0 +1,33 @@
+.text1 {
+    font-size: 20px;
+    color: #2e2c2c;
+}
+
+.text2 {
+    font-size: 15px;
+    color: #777272;
+}
+
+.border {
+    height: 10%;
+}
+
+.testitem {
+    margin-top: 0;
+    padding: 0 0 2% 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #dbd2d2;
+}
+
+.btn1 {
+    width: 80%;
+    margin-top: 20rpx;
+    background-color: beige;
+    color: white;
+    border-radius: 98rpx;
+}
+
+.btn1::after {
+    border-radius: 98rpx;
+}

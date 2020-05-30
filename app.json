@@ -1,0 +1,42 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/teacher_home/add_class/add_class",
+        "pages/teacher_home/class/class",
+        "pages/teacher_home/fill_info/fill_info",
+        "pages/student_home/class/location_checkin/location_checkin",
+        "pages/teacher_home/class/face_checkin/face_checkin",
+        "pages/teacher_home/class/history/history",
+        "pages/component/popup/popup",
+        "pages/component/popMenu/popMenu",
+        "pages/student_home/class_info/class_info",
+        "pages/student_home/modifyinf/modifyinf",
+        "pages/teacher_home/class/import_test/import_test",
+        "pages/student_home/class_info/my_test/my_test",
+        "pages/student_home/class_info/do_test/do_test",
+        "pages/teacher_home/teacher_main/teacher_main",
+        "pages/student_home/student_home",
+        "pages/teacher_home/class/show_score/show_score",
+        "pages/teacher_home/class/cbbs/cbbs",
+        "pages/teacher_home/class/cbbs/writeartical/writeartical",
+        "pages/teacher_home/class/student_manage/student_manage",
+        "pages/student_home/upface/upface",
+        "pages/student_home/class/face_checkin/face_checkin",
+        "pages/teacher_home/class/show_score/testdetail/testdetail",
+        "pages/teacher_home/class/detail/detail",
+        "pages/student_home/class/sface/sface",
+        "pages/teacher_home/class/show_score/testmain/testmain",
+        "pages/student_home/class_info/my_test/show_result/show_result"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#61a2f7",
+        "navigationBarTitleText": "教学助手",
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+
+    },
+    "usingComponents": {
+        "cu-custom": "/colorui/components/cu-custom"
+    },
+    "sitemapLocation": "sitemap.json"
+}

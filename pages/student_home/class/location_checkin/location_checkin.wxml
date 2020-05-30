@@ -1,0 +1,9 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">{{title}}</view>
+</cu-custom>
+<view class="father">
+    <map circles="{{circles}}" id="myMap" includePoints="{{include_points}}" latitude="{{t_latitude}}" longitude="{{t_longitude}}" markers="{{markers}}" showLocation="true" style="width: 100%; height: 300px;"></map>
+    <button bindtap="locationCheckin">刷新定位</button>
+    <text wx:if="{{hasResult}}">{{result}}</text>
+</view>

@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "课程作业",
+    "usingComponents": {
+        "cu-custom": "/colorui/components/cu-custom"
+    }
+}

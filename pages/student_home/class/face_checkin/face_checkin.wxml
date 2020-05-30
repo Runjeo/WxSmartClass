@@ -1,0 +1,12 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="content">扫脸签到</view>
+</cu-custom>
+<camera binderror="error" devicePosition="front" flash="off" style="width: 100%; height: 400px"></camera>
+<view class="flex">
+    <view class="flex-sub    margin-xs radius">
+        <button bindtap="start" class="cu-btn bg-{{backgroud}} margin-tb-sm lg">{{text}}</button>
+    </view>
+    <view class="flex-sub   margin-xs radius">
+        <button bindtap="goback" class="cu-btn bg-{{backgroud1}} margin-tb-sm lg" disabled="{{disable}}">完成</button>
+    </view>
+</view>

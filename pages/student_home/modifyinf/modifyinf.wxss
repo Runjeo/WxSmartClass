@@ -1,0 +1,11 @@
+.input {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #dbd2d2;
+    margin-top: 3%;
+    font-size: 30rpx;
+}
+
+.button_container {
+    margin-top: 5%;
+}

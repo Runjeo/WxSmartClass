@@ -1,0 +1,203 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">{{title}}</view>
+</cu-custom>
+<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+    <view bindtap="{{item.tap}}" class="cu-item" wx:if="{{index<gridCol*2}}" wx:for="{{iconList}}">
+        <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+            <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+                <block wx:if="{{item.badge!=1}}">{{item.badge>99?'99+':item.badge}}</block>
+            </view>
+        </view>
+        <text>{{item.name}}</text>
+    </view>
+</view>
+<view wx:if="{{isNull==false}}">
+    <view style="position:fixed; top:475rpx;width: 100%;">
+        <view class="VerticalBox">
+            <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 475rpx)">
+                <view bindtap="gohisdetail" class="cu-timeline" data-sid="{{item.sid}}" data-type="{{item.type}}" id="main-{{index}}" wx:for="{{hlist}}">
+                    <view class="cu-time" wx:if="{{item.year!=0}}">{{item.year}}年</view>
+                    <view class="cu-time" wx:if="{{item.day!=0}}">{{item.day}}</view>
+                    <view class="cu-item">
+                        <view class="content">
+                            <view class="cu-capsule radius">
+                                <view class="cu-tag bg-cyan">{{item.time}}</view>
+                                <view class="cu-tag line-cyan">{{item.type}}</view>
+                            </view>
+                            <view class="cu-capsule radius margin-right">
+                                <view class="cu-tag bg-grey ">
+									签到人数
+								</view>
+                                <view class="cu-tag line-grey">
+									{{item.num}}人
+								</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<view class="zan-dialog {{showCheckinDialog?'zan-dialog--show':''}}">
+    <view bindtap="showCheckinDialog" class="zan-dialog__mask"></view>
+    <view class="zan-dialog__container">
+        <view style="padding:20rpx;">
+            <map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" showLocation="true" style="width: 600rpx; height: 650rpx;">
+                <cover-image class="cover-image" src="/images/location.png"></cover-image>
+            </map>
+            <form bindsubmit="locationSubmit">
+                <view class="cu-form-group" style="margin-top:20rpx">
+                    <view class="title">开放时长</view>
+                    <input name="min" placeholder="请输入签到时长(分钟)"></input>
+                </view>
+                <button class="cu-btn bg-grey lg" formType="submit" style="margin-top:40rpx;width:100%">发起签到</button>
+                <text wx:if="{{hasResult}}">{{result}}</text>
+            </form>
+        </view>
+    </view>
+</view>
+<view class="zan-dialog {{showDeleteDialog?'zan-dialog--show':''}}">
+    <view bindtap="showDeleteDialog" class="zan-dialog__mask"></view>
+    <view class="zan-dialog__container" style="height: 350rpx;">
+        <view style="padding:20rpx;">
+            <text>警告!
+</text>
+            <text>该操作不可撤销,与该课程相关的所有信息将被删除。</text>
+            <view style="display: flex; flex-direction: row;margin-top:40rpx;">
+                <button bindtap="cancelDelete">取消</button>
+                <button bindtap="deleteClass" style="background-color:red;">删除</button>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="zan-dialog {{showOpenInDialog?'zan-dialog--show':''}}">
+    <view bindtap="showOpenInDialog" class="zan-dialog__mask"></view>
+    <view class="zan-dialog__container" style="height: 400rpx;">
+        <view style="padding:20rpx;">
+            <form bindsubmit="openInSubmit">
+                <input name="passwd" placeholder="请设置加入密码" style="margin-top:20rpx;height:80rpx;border: 1px solid black;"></input>
+                <input name="lastMin" placeholder="请输入开放时长(分钟)" style="margin-top:20rpx;height:80rpx;border: 1px solid black;"></input>
+                <button formType="submit" style="margin-top:40rpx;">确定</button>
+                <text wx:if="{{hasResult}}">{{result}}</text>
+            </form>
+        </view>
+    </view>
+</view>
+<modal bindcancel="cancel" bindconfirm="confirm" cancelText="取消" confirmText="确定" hidden="{{hidden}}" title="新建测验">
+    <view style="display: flex; flex-direction: row;margin-bottom:5%; ">
+        <view style="width:30%">
+            <text sytle="font-size:30px">测验名称</text>
+        </view>
+        <view class="page-section">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <input bindinput="NameInput" class="weui-input" maxlength="10" placeholder="最大输入长度为10"></input>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style=" height:90px;display: flex; flex-direction: row;margin-bottom:5%; ">
+        <view style="width:30%;margin-top:30px">
+            <text sytle="font-size:30px">选择章节</text>
+        </view>
+        <picker-view bindchange="bindChange" indicatorStyle="height: 30px;" style="width: 70%; height: 90px;" value="{{value}}">
+            <picker-view-column>
+                <view style="line-height: 30px" wx:for="{{categorys}}">{{item}}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+    <view style="display: flex; flex-direction: row;margin-bottom:5%; ">
+        <view style="width:30%">
+            <text sytle="font-size:30px">题目数量</text>
+        </view>
+        <view class="page-section">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <input bindinput="NumberInput" class="weui-input" placeholder="这是一个数字输入框" type="number"></input>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style="display: flex; flex-direction: row;margin-bottom:5%; ">
+        <view style="width:30%;margin-top:2px">
+            <text sytle="font-size:30px">完成时间</text>
+        </view>
+        <view class="page-section">
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <input bindinput="TimeInput" class="weui-input" placeholder="这是一个数字输入框" type="number"></input>
+                </view>
+            </view>
+        </view>
+    </view>
+</modal>
+<modal bindcancel="cancel" bindconfirm="formSubmit" cancelText="取消" confirmText="确定" hidden="{{hidden1}}" title="导入题库">
+    <view class="cu-bar bg-white margin-top">
+        <view class="action">
+			文件上传
+		</view>
+        <view class="action">
+			{{imgList.length}}/1
+		</view>
+    </view>
+    <view class="cu-form-group">
+        <view class="grid col-4 grid-square flex-sub">
+            <view bindtap="ViewImage" class="bg-img" data-url="/images/excel.png" wx:for="{{imgList}}" wx:key="{{index}}">
+                <image mode="aspectFill" src="/images/excel.png"></image>
+                <view catchtap="DelFile" class="cu-tag bg-red" data-index="{{index}}">
+                    <text class="cuIcon-close"></text>
+                </view>
+            </view>
+            <view bindtap="chooseFile" class="solids" wx:if="{{imgList.length<1}}">
+                <text class="cuIcon-add"></text>
+            </view>
+        </view>
+    </view>
+</modal>
+<modal bindcancel="cancel" bindconfirm="openInSubmit" cancelText="取消" confirmText="确定" hidden="{{hidden2}}" title="开放加入">
+    <form>
+        <view class="cu-form-group margin-top">
+            <view class="title">开放密码</view>
+            <input bindinput="formInputpwd" placeholder="请输入开放密码" value="{{openpwd}}"></input>
+        </view>
+        <view class="cu-form-group">
+            <view class="title">开放时长</view>
+            <input bindinput="formInputtime" placeholder="请输入开放时长" value="{{opentime}}"></input>
+        </view>
+    </form>
+</modal>
+<modal bindcancel="cancel" bindconfirm="sfaceCheckinSubmit" cancelText="取消" confirmText="确定" hidden="{{hidden4}}" title="学生人脸签到">
+    <form>
+        <view class="cu-form-group">
+            <view class="title">开放签到时长</view>
+            <input bindinput="formInputstime" name="slastMin" placeholder="请输入开放时长" value="{{sopentime}}"></input>
+        </view>
+    </form>
+</modal>
+<view class="cu-modal {{modalName=='DialogModal2'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+            <view class="content">人脸签到</view>
+            <view bindtap="hideModal" class="action">
+                <text class="cuIcon-close text-red"></text>
+            </view>
+        </view>
+        <view class="">
+			最近签到：
+		</view>
+        <view class="padding-xl">
+			{{recentFaceCheck}}
+		</view>
+        <view class="cu-bar bg-white">
+            <view bindtap="continueFaceCheck" class="action margin-0 flex-sub text-green ">
+				继续签到</view>
+            <view bindtap="hideModal" class="action margin-0 flex-sub text-red solid-left">取消</view>
+            <view bindtap="newFaceCheck" class="action margin-0 flex-sub text-green  solid-left">新建签到</view>
+        </view>
+    </view>
+</view>
+<modal bindcancel="cancel" bindconfirm="deleteClass" cancelText="取消" confirmText="确定" hidden="{{hidden3}}" title="删除课程">
+    <view>确定删除课程{{title}}吗？</view>
+</modal>

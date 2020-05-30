@@ -1,0 +1,72 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">{{title}}</view>
+</cu-custom>
+<view>
+	<view class="cu-bar bg-white solid-bottom margin-top">
+		<view class="action">
+			<text class="cuIcon-title text-orange "></text>试卷统计
+		</view>
+		<view class="action">
+			<button wx:if="{{teststate=='0'}}" bindtap="openclose" class="cu-btn bg-green shadow">开放查询</button>
+            <button wx:if="{{teststate=='1'}}" bindtap="openclose" class="cu-btn bg-red shadow">关闭查询</button>
+		</view>
+	</view>
+	<view>
+		<view class="VerticalBox">
+			<scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 370rpx)">
+				<view class="padding-top padding-lr" id="main-{{index}}" wx:for="{{testList}}">
+					<view class="cu-bar solid-bottom bg-white">
+						<view class="action">
+							<text class="cuIcon-title text-green"></text>作业：{{item.name}} </view>
+					</view>
+					<view class="cu-list menu-avatar">
+						<view bindtap="goTodetail" class="cu-item" data-name="{{item.name}}" data-tid="{{item.id}}">
+							<view class="cu-avatar round lg bg-cyan">
+								<text>{{item.iconn}}</text>
+							</view>
+							<view class="content">
+								<view class="text-gray text-sm flex">
+									<text class="text-cut">
+                                        <text class="margin-right-xs">章节：{{item.category}}</text>
+									</text>
+								</view>
+								<view class="text-gray text-sm flex">
+									<text class="text-cut">
+                                        <text class="margin-right-xs">日期：{{item.starttime}}</text>
+									</text>
+								</view>
+							</view>
+							<view class="action">
+								<view class="text-grey text-xs">状态</view>
+								<view class="cu-tag round bg-grey sm">{{item.state}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+</view>
+<view class="cu-modal {{modalName=='setWeightModal'?'show':''}}">
+	<view class="cu-dialog">
+		<view class="cu-bar justify-end bg-grey solid-bottom">
+			<view class="content ">设置权重</view>
+			<view bindtap="hideModal" class="action">
+				<text class="cuIcon-close text-red"></text>
+			</view>
+		</view>
+		<view class="cu-form-group margin-top">
+			<text style="text-align: center;width:40%">签到</text>
+			<text style="text-align: center;width:40%">练习</text>
+		</view>
+		<view class="cu-form-group">
+			<input name="signw" placeholder="签到权重" style="width:20%"></input>
+			<text class="margin-left">/</text>
+			<input class="margin-left" name="excew" placeholder="练习权重" style="width:20%"></input>
+		</view>
+		<view bindtap="hideModal" class="cu-form-group bg-grey margin-top">
+			<text style="text-align:center;width:100%">确定</text>
+		</view>
+	</view>
+</view>

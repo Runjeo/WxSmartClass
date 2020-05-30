@@ -1,0 +1,119 @@
+
+
+.father {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.cell-name {
+    display: flex;
+    width: 20%;
+    height: 100rpx;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.cell-id {
+    display: flex;
+    width: 40%;
+    height: 100rpx;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.cell-checked {
+    display: flex;
+    width: 40%;
+    height: 100rpx;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.zan-dialog__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0,0,0,0.4);
+    display: none;
+}
+
+.zan-dialog__container {
+    position: fixed;
+    bottom: 200rpx;
+    width: 650rpx;
+    height: 950rpx;
+    margin-left: 50rpx;
+    background: #f8f8f8;
+    transform: translateY(300%);
+    transition: all 0.4s ease;
+    z-index: 12;
+    border-radius: 20rpx;
+    box-shadow: 0px 3px 3px 2px gainsboro;
+}
+
+.zan-dialog--show .zan-dialog__container {
+    transform: translateY(0);
+}
+
+.zan-dialog--show .zan-dialog__mask {
+    display: block;
+}
+
+.cover-image {
+    width: 100rpx;
+    height: 100rpx;
+    margin-left: 250rpx;
+    margin-top: 250rpx;
+}
+
+.VerticalNav.nav {
+    width: 200rpx;
+    white-space: initial;
+}
+
+.VerticalNav.nav .cu-item {
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+    margin: 0;
+    border: none;
+    height: 50px;
+    position: relative;
+}
+
+.VerticalNav.nav .cu-item.cur {
+    background-color: #f1f1f1;
+}
+
+.VerticalNav.nav .cu-item.cur::after {
+    content: "";
+    width: 8rpx;
+    height: 30rpx;
+    border-radius: 10rpx 0 0 10rpx;
+    position: absolute;
+    background-color: currentColor;
+    top: 0;
+    right: 0rpx;
+    bottom: 0;
+    margin: auto;
+}
+
+.VerticalBox {
+    display: flex;
+}
+
+.VerticalMain {
+    background-color: #f1f1f1;
+}

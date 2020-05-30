@@ -1,0 +1,30 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">作业详情</view>
+</cu-custom>
+<view class="VerticalBox">
+    <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh-50rpx)">
+        <view id="main-{{index}}" wx:for="{{stestitemList}}" wx:for-index="indext">
+            <view class="cu-bar bg-white solid-bottom margin-top">
+                <view class="action">
+                    <text class="cuIcon-title text-orange "></text> 题目{{indext+1}}: {{item.content}}
+				</view>
+            </view>
+            <view class="cu-form-group">
+                <text class="text-grey">正确答案:{{item.real}}  学生选择:{{item.choice}} </text>
+            </view>
+            <view class="cu-form-group">
+                <text class="text-grey">A:{{item.a}}</text>
+            </view>
+            <view class="cu-form-group">
+                <text class="text-grey">B:{{item.b}}</text>
+            </view>
+            <view class="cu-form-group">
+                <text class="text-grey">C:{{item.c}}</text>
+            </view>
+            <view class="cu-form-group">
+                <text class="text-grey">D:{{item.d}}</text>
+            </view>
+        </view>
+    </scroll-view>
+</view>

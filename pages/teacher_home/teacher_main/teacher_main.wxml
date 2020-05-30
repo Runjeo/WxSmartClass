@@ -1,0 +1,137 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">首页</view>
+</cu-custom>
+<scroll-view scrollX class="bg-white nav">
+	<view class="flex text-center">
+		<view bindtap="tabSelect" class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" data-id="{{index}}" wx:for="{{tag}}">
+			{{item}}
+		</view>
+	</view>
+</scroll-view>
+<view style="position:fixed; top:240rpx;width: 100%;">
+	<swiper class="swiper" current="{{TabCur}}" duration="300" style="height:600px;">
+		<swiper-item catchtouchmove="catchTouchMove">
+			<view>
+				<view class="cu-bar bg-white solid-bottom margin-top">
+					<view class="action">
+						<text class="cuIcon-title text-orange "></text>我的课程
+					</view>
+				</view>
+				<view wx:if="{{isclassNull==false}}">
+					<view class="VerticalBox">
+						<scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 370rpx)">
+							<view class="padding-top padding-lr" id="main-{{index}}" wx:for="{{classList}}">
+								<view class="cu-bar solid-bottom bg-white">
+									<view class="action">
+										<text class="cuIcon-title text-green"></text>{{item.name}} </view>
+									<view class="action">
+										<button bindtap="getsubscribe" class="cu-btn bg-green shadow" data-id="{{item.id}}">上课提醒</button>
+									</view>
+								</view>
+								<view class="cu-list menu-avatar">
+									<view bindtap="goToClass" class="cu-item" data-id="{{item.id}}" data-name="{{item.name}}">
+										<view class="cu-avatar round lg bg-cyan">
+											<text>{{item.iconn}}</text>
+										</view>
+										<view class="content">
+											<view class="text-gray text-sm flex">
+												<text class="text-cut">
+                                                    <text class="margin-right-xs">{{item.name}} </text>
+												</text>
+											</view>
+											<view class="text-gray text-sm flex">
+												<text class="text-cut">
+                                                    <text class="margin-right-xs">课程号：{{item.id}}</text>
+												</text>
+											</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+			</view>
+		</swiper-item>
+		<swiper-item catchtouchmove="catchTouchMove">
+			<view class="cu-bar bg-white search fixed">
+				<view class="search-form round">
+					<text class="cuIcon-search"></text>
+					<input bindinput="classInput" confirmType="search" placeholder="输入添加的课程名" type="text"></input>
+				</view>
+				<view class="action">
+					<button bindtap="search" class="cu-btn bg-gradual-green shadow-blur round">添加</button>
+				</view>
+			</view>
+			<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+				<view class="cu-dialog">
+					<view class="cu-bar bg-white justify-end">
+						<view class="content">{{modaltext}}</view>
+						<view bindtap="hideModal" class="action">
+							<text class="cuIcon-close text-red"></text>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="cu-modal {{modalName=='Modal1'?'show':''}}">
+				<view class="cu-dialog">
+					<view class="cu-bar bg-white justify-end">
+						<view class="content">是否添加该课程？</view>
+						<view bindtap="hideModal" class="action">
+							<text class="cuIcon-close text-red"></text>
+						</view>
+					</view>
+					<view class="padding-xl">
+						{{classInput}}
+					</view>
+					<view class="cu-bar bg-white justify-end">
+						<view class="action">
+							<button bindtap="hideModal" class="cu-btn line-green text-green">取消</button>
+							<button bindtap="addclass" class="cu-btn bg-green margin-left">确定</button>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view style="margin-top:100px" wx:if="{{hasResult}}">
+				<view class="cu-bar bg-white solid-bottom margin-top">
+					<view class="action">
+						<text class="cuIcon-titles text-orange "></text> {{result}}
+					</view>
+				</view>
+			</view>
+		</swiper-item>
+		<swiper-item catchtouchmove="catchTouchMove"></swiper-item>
+	</swiper>
+</view>
+
+
+
+<modal bindcancel="cancel" bindconfirm="formSubmit" cancelText="取消" confirmText="确定" hidden="{{hidden2}}" title="上课提醒">
+	<form>
+		<view class="cu-form-group margin-top">
+			<view class="title">上课地点</view>
+			<input bindinput="formInputplace" placeholder="请输入上课地点" value="{{place}}"></input>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">日期选择</view>
+			<picker mode="date" value="{{date}}" start="2020-01-01" end="2030-01-01" bindchange="DateChange">
+				<view class="picker">
+					{{date}}
+				</view>
+			</picker>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">时间选择</view>
+			<picker mode="time" value="{{time}}" start="00:00" end="24:00" bindchange="TimeChange">
+				<view class="picker">
+					{{time}}
+				</view>
+			</picker>
+		</view>
+		<view class="cu-form-group">
+			<view class="title">上课班级</view>
+			<input bindinput="formInputclassname" placeholder="请输入上课班级" value="{{classname}}"></input>
+		</view>
+	</form>
+</modal>

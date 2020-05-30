@@ -1,0 +1,17 @@
+.img-plus-style {
+    height: 70rpx;
+    width: 70rpx;
+    position: fixed;
+    bottom: 150rpx;
+    right: 100rpx;
+    z-index: 100;
+}
+
+.img-style {
+    height: 80rpx;
+    width: 80rpx;
+    position: fixed;
+    bottom: 150rpx;
+    right: 100rpx;
+    opacity: 0;
+}

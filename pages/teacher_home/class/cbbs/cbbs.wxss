@@ -1,0 +1,7 @@
+.write {
+    position: fixed;
+    width: 90rpx;
+    height: 90rpx;
+    bottom: 120rpx;
+    right: 90rpx;
+}

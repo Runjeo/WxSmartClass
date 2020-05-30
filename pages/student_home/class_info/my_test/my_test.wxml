@@ -1,0 +1,101 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">我的作业</view>
+</cu-custom>
+<scroll-view scrollX class="bg-white nav head">
+    <view class="flex text-center">
+        <view bindtap="tabSelect" class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" data-id="{{index}}" wx:for="{{tag}}">
+			{{item}}
+		</view>
+    </view>
+</scroll-view>
+<view style="position:fixed; top:240rpx;width: 100%;">
+    <swiper class="swiper" current="{{TabCur}}" duration="300" style="height:calc(100vh - 60rpx)">
+        <swiper-item catchtouchmove="catchTouchMove">
+            <view>
+                <view class="cu-bar bg-white solid-bottom margin-top">
+                    <view class="action">
+                        <text class="cuIcon-title text-orange "></text> 待完成作业
+					</view>
+                </view>
+                <view wx:if="{{istestNull==false}}">
+                    <view class="VerticalBox">
+                        <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 370rpx)">
+                            <view class="padding-top padding-lr" id="main-{{index}}" wx:for="{{testList}}">
+                                <view class="cu-bar solid-bottom bg-white">
+                                    <view class="action">
+                                        <text class="cuIcon-title text-green "></text>作业：{{item.name}} </view>
+                                </view>
+                                <view class="cu-list menu-avatar">
+                                    <view bindtap="dotest" class="cu-item" data-id="{{item.id}}" data-name="{{item.name}}">
+                                        <view class="cu-avatar round lg bg-cyan">
+                                            <text>{{item.iconn}}</text>
+                                        </view>
+                                        <view class="content">
+                                            <view class="text-gray text-sm flex">
+                                                <text class="text-cut">
+                                                    <text class="margin-right-xs">作业：{{item.name}} </text>
+                                                </text>
+                                            </view>
+                                            <view class="text-gray text-sm flex">
+                                                <text class="text-cut">
+                                                    <text class="margin-right-xs">{{item.starttime}}至{{item.endtime}}</text>
+                                                </text>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <swiper-item catchtouchmove="catchTouchMove">
+            <view class="cu-bar bg-white solid-bottom margin-top">
+                <view class="action">
+                    <text class="cuIcon-title text-orange "></text> 已完成作业
+				</view>
+            </view>
+            <view wx:if="{{istestdoneNull==false}}">
+                <view class="VerticalBox">
+                    <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 370rpx)">
+                        <view class="padding-top padding-lr" id="main-{{index}}" wx:for="{{testdoneList}}">
+                            <view class="cu-bar solid-bottom bg-white">
+                                <view class="action">
+                                    <text class="cuIcon-title text-green"></text>作业：{{item.name}} </view>
+                            </view>
+                            <view bindtap="showdetail" class="cu-list menu-avatar" data-testid="{{item.id}}">
+                                <view class="cu-item">
+                                    <view class="cu-avatar round lg bg-cyan">
+                                        <text>{{item.iconn}}</text>
+                                    </view>
+                                    <view class="content">
+                                        <view class="text-gray text-sm flex">
+                                            <text class="text-cut">
+                                                <text class="margin-right-xs">作业：{{item.name}}</text>
+                                            </text>
+                                        </view>
+                                        <view class="text-gray text-sm flex">
+                                            <text class="text-cut">
+                                                <text class="margin-right-xs">{{item.starttime}}至{{item.endtime}}</text>
+                                            </text>
+                                        </view>
+                                    </view>
+                                    <view class="action">
+                                        <view class="text-grey text-xs">分数</view>
+                                        <view class="cu-tag round bg-grey sm">{{item.score}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+        </swiper-item>
+        <swiper-item catchtouchmove="catchTouchMove"></swiper-item>
+    </swiper>
+</view>
+<modal bindcancel="modalCancel" bindconfirm="modalConfirm" cancelText="取消" confirmText="确认" hidden="{{hidden}}" title="开始做题">
+	该作业只能提交一次。是否确定做题？
+</modal>

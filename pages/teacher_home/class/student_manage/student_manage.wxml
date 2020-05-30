@@ -1,0 +1,74 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+    <view slot="backText">返回</view>
+    <view slot="content">
+        <text>学生管理</text>
+    </view>
+</cu-custom>
+<view style="position:fixed; top:130rpx;width: 100%;">
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class="action">
+            <text class="cuIcon-title text-orange "></text>课程学生
+      </view>
+    </view>
+    <view wx:if="{{isstudentNull==false}}">
+        <view class="VerticalBox">
+            <scroll-view scrollWithAnimation scrollY bindscroll="VerticalMain" class="VerticalMain" scrollIntoView="main-{{MainCur}}" style="height:calc(100vh - 360rpx)">
+                <view class="padding-top padding-lr" id="main-{{index}}" wx:for="{{classList}}">
+                    <view class="cu-bar solid-bottom bg-white">
+                        <view class="action">
+                            <text class="cuIcon-title text-green"></text>{{item.name}} </view>
+                    </view>
+                    <view class="cu-list menu-avatar">
+                        <view bindtap="goToClass" class="cu-item" data-id="{{item.id}}" data-name="{{item.name}}">
+                            <view class="cu-avatar round lg bg-cyan">
+                                <text>{{item.iconn}}</text>
+                            </view>
+                            <view class="content">
+                                <view class="text-gray text-sm flex">
+                                    <text class="text-cut">
+                                        <text class="margin-right-xs">{{item.name}} </text>
+                                    </text>
+                                </view>
+                                <view class="text-gray text-sm flex">
+                                    <text class="text-cut">
+                                        <text class="margin-right-xs">课程号：{{item.id}}</text>
+                                    </text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+</view>
+<inf wx:if="{{showviewclass==false}}">
+    <view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
+        <view bindtap="{{item.tap}}" class="cu-item" wx:if="{{index<gridCol*2}}" wx:for="{{iconList}}">
+            <view class="cuIcon-{{item.icon}} text-{{item.color}}">
+                <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+                    <block wx:if="{{item.badge!=1}}">{{item.badge>99?'99+':item.badge}}</block>
+                </view>
+            </view>
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+</inf>
+<view class="cu-bar tabbar  bg-white  foot">
+    <view class="action text-gray add-action">
+        <button bindtap="showaddclass" class="cu-btn cuIcon-add bg-green shadow"></button>
+    添加学生
+  </view>
+</view>
+<modal bindcancel="cancel" bindconfirm="formSubmit" cancelText="取消" confirmText="确定" hidden="{{hidden2}}" title="加入课程">
+    <form>
+        <view class="cu-form-group margin-top">
+            <view class="title">课程号码</view>
+            <input bindinput="formInputclassIda" placeholder="请输入课程号码" value="{{classIda}}"></input>
+        </view>
+        <view class="cu-form-group">
+            <view class="title">开放密码</view>
+            <input bindinput="formInputpwd" placeholder="请输入开放密码" value="{{openpwd}}"></input>
+        </view>
+    </form>
+</modal>

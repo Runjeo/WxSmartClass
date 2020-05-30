@@ -1,0 +1,28 @@
+
+
+.cell-name {
+    display: flex;
+    width: 20%;
+    height: 80rpx;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.cell-id {
+    display: flex;
+    width: 40%;
+    height: 80rpx;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.cell-checked {
+    display: flex;
+    width: 40%;
+    height: 80rpx;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

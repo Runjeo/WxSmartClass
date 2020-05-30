@@ -1,0 +1,18 @@
+<view mode="widthfix" style="width:100%;min-height:100%;background-size:100% 100%">
+    <view style="position:fixed;width:100%;top:20%">
+        <view class="padding radius text-center ">
+            <view class="text-lg text-sl text-white">停课不停学</view>
+            <view class="margin-top-sm text-sl text-white">学习不延期</view>
+        </view>
+    </view>
+    <view style="position:fixed;width:100%;bottom:20%">
+        <view class="flex solid-bottom padding justify-around">
+            <button bindtap="btnTeacher" class="cu-btn bg-orange light  lg" wx:if="{{autoLogin}}">
+                <view class="text-black">我是老师</view>
+            </button>
+            <button bindtap="btnStudent" class="cu-btn bg-orange light lg" wx:if="{{autoLogin}}">
+                <view class="text-black">我是学生</view>
+            </button>
+        </view>
+    </view>
+</view>
